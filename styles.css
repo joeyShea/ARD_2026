@@ -1,0 +1,276 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #0b0c2a;
+  color: #e8e8f0;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  overflow: hidden;
+}
+
+/* Star canvas fixed behind everything */
+#stars-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Navigation dots */
+#nav-dots {
+  position: fixed;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  z-index: 100;
+}
+
+.nav-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(201, 168, 76, 0.25);
+  border: 1px solid rgba(201, 168, 76, 0.5);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.nav-dot.active {
+  background: #c9a84c;
+  transform: scale(1.5);
+  box-shadow: 0 0 6px rgba(201, 168, 76, 0.6);
+}
+
+/* Scroll container */
+#scroll-container {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  position: relative;
+  z-index: 1;
+}
+
+/* Shared section base */
+.section {
+  height: 100vh;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  padding: 2rem 4.5rem 2rem 3.5rem;
+  position: relative;
+}
+
+/* Subtle bottom separator line */
+.section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(201,168,76,0.12), transparent);
+}
+
+/* ---- Photo side ---- */
+.photo-side {
+  width: 45%;
+  flex-shrink: 0;
+  padding-right: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo-placeholder {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  border: 1px solid rgba(201, 168, 76, 0.18);
+  position: relative;
+  overflow: hidden;
+}
+
+.photo-placeholder .ph-icon {
+  opacity: 0.3;
+  z-index: 1;
+}
+
+.photo-placeholder .ph-label {
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+  z-index: 1;
+}
+
+/* When real images are swapped in */
+.photo-side img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid rgba(201, 168, 76, 0.18);
+}
+
+/* ---- Text side ---- */
+.text-side {
+  width: 55%;
+  padding-left: 2.5rem;
+  border-left: 1px solid rgba(201, 168, 76, 0.13);
+}
+
+.section-number {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  color: rgba(201, 168, 76, 0.6);
+  letter-spacing: 0.25em;
+  margin-bottom: 0.8rem;
+}
+
+.section-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.4rem, 2.4vw, 2.1rem);
+  color: #c9a84c;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 1.1rem;
+}
+
+.section-divider {
+  width: 2.5rem;
+  height: 1px;
+  background: linear-gradient(to right, #c9a84c, transparent);
+  margin-bottom: 1.2rem;
+}
+
+.section-description {
+  font-size: clamp(0.88rem, 1.15vw, 1.02rem);
+  line-height: 1.9;
+  color: #c8ccdf;
+  font-weight: 300;
+}
+
+.section-description ul {
+  list-style: none;
+  padding: 0;
+}
+
+.section-description ul li {
+  padding-left: 1.5em;
+  position: relative;
+  margin-bottom: 0.65rem;
+}
+
+.section-description ul li::before {
+  content: '✦';
+  position: absolute;
+  left: 0;
+  color: #c9a84c;
+  font-size: 0.55em;
+  top: 0.42em;
+}
+
+/* ---- Conclusion section ---- */
+.section.conclusion {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem;
+}
+
+.conclusion-inner {
+  max-width: 580px;
+}
+
+.conclusion .section-number {
+  text-align: center;
+  margin-bottom: 0.8rem;
+}
+
+.conclusion .section-title {
+  font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+  margin-bottom: 1.2rem;
+}
+
+.conclusion .section-divider {
+  margin: 0 auto 1.5rem;
+}
+
+.conclusion-stars-top {
+  font-size: 1.4rem;
+  color: #c9a84c;
+  letter-spacing: 0.7rem;
+  display: block;
+  margin-bottom: 2rem;
+}
+
+.conclusion-stars-bottom {
+  font-size: 1rem;
+  color: rgba(201, 168, 76, 0.4);
+  letter-spacing: 0.9rem;
+  display: block;
+  margin-top: 2.5rem;
+}
+
+/* ---- Title screen ---- */
+.section.title-screen {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem;
+}
+
+.title-screen-inner {
+  max-width: 640px;
+}
+
+.title-screen-stars {
+  font-size: 1.2rem;
+  color: rgba(201, 168, 76, 0.6);
+  letter-spacing: 0.7rem;
+  display: block;
+  margin-bottom: 2rem;
+}
+
+.title-screen-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  color: rgba(201, 168, 76, 0.6);
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+}
+
+.title-screen-heading {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 600;
+  color: #c9a84c;
+  line-height: 1.2;
+  margin-bottom: 1.4rem;
+}
+
+.title-screen .section-divider {
+  margin: 0 auto 1.4rem;
+  width: 3rem;
+}
+
+.title-screen-authors {
+  font-family: 'Raleway', sans-serif;
+  font-size: clamp(0.9rem, 1.4vw, 1.1rem);
+  font-weight: 300;
+  color: #c8ccdf;
+  letter-spacing: 0.1em;
+}
