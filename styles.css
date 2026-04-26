@@ -116,8 +116,28 @@ body {
 /* When real images are swapped in */
 .photo-side img {
   width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+  max-height: calc(100vh - 6rem);
+  object-fit: contain;
+  border-radius: 10px;
+  border: 1px solid rgba(201, 168, 76, 0.18);
+}
+
+/* Two portrait photos side by side */
+.photo-pair {
+  display: flex;
+  gap: 0.75rem;
+  width: 100%;
+  max-height: calc(100vh - 6rem);
+  align-items: center;
+}
+
+.photo-side .photo-pair img {
+  flex: 1;
+  min-width: 0;
+  width: 50%;
+  height: auto;
+  max-height: calc(100vh - 6rem);
+  object-fit: contain;
   border-radius: 10px;
   border: 1px solid rgba(201, 168, 76, 0.18);
 }
