@@ -174,7 +174,7 @@ body {
 }
 
 .section-description {
-  font-size: clamp(0.88rem, 1.15vw, 1.02rem);
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
   line-height: 1.9;
   color: #c8ccdf;
   font-weight: 300;
@@ -216,6 +216,7 @@ body {
 .conclusion .section-number {
   text-align: center;
   margin-bottom: 0.8rem;
+  font-size: 1rem;
 }
 
 .conclusion .section-title {
